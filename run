@@ -1,0 +1,24 @@
+checkJenkinsData=`docker volume ls | awk '{ print $2 }' | grep ^jenkins-data$`
+if [ "X" = "X$checkJenkinsData" ] ; then
+    docker volume create jenkins-data
+fi
+
+checkJenkinsCerts=`docker volume ls | awk '{ print $2 }' | grep ^jenkins-docker-certs$`
+if [ "X" = "X$checkJenkinsCerts" ] ; then
+    docker volume create jenkins-docker-certs
+fi
+
+checkContainer=`docker ps | grep ' jenkins-docker$'`
+
+if [ "X$checkContainer" = "X" ] ; then
+
+`dirname $0`/run-dd
+
+fi
+
+checkBlueOcean=`docker ps | grep ' jenkins-tutorial$'`
+
+if [ "X" = "X$checkBlueOcean" ] ; then
+    `dirname $0`/run-blueocean
+fi
+
