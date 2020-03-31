@@ -5,4 +5,4 @@ docker container run --name jenkins-tutorial --rm --detach \
   --volume jenkins-data:/var/jenkins_home \
   --volume jenkins-docker-certs:/certs/client:ro \
   --volume "$HOME":/home \
-  --publish 8090:8080 knesser2:blueocean
+  --publish 8090:8080 knesser2/blueocean
