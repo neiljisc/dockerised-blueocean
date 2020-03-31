@@ -1,3 +1,9 @@
+checkJenkinsNetwork=`docker network ls | awk '{ print $2 }' | grep ^jenkins$`
+if [ "X" = "X$checkJenkinsNetwork" ] ; then
+    docker network create jenkins
+fi
+
+
 checkJenkinsData=`docker volume ls | awk '{ print $2 }' | grep ^jenkins-data$`
 if [ "X" = "X$checkJenkinsData" ] ; then
     docker volume create jenkins-data
